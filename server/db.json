@@ -1,24 +1,9 @@
 {
   "contacts": [
     {
-      "id": "id-3",
-      "name": "Eden Clements",
-      "number": "645-17-79"
-    },
-    {
       "id": "id-4",
       "name": "Annie Copeland",
       "number": "227-91-26"
-    },
-    {
-      "name": "Rickos",
-      "number": "439-12-48",
-      "id": "2e90d1d3-cc67-42cb-a860-d4c6fd32cd39"
-    },
-    {
-      "name": "asd",
-      "number": "123",
-      "id": "b82b3359-d8fb-41a8-a256-cccf3f0afa30"
     }
   ]
 }

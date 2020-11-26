@@ -6,16 +6,17 @@ import PhoneItem from "../PhoneItem/PhoneItem";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem } from '../../redux/action/todoList';
 import { v4 as uuidv4 } from 'uuid';
-import { Title, Div } from './StyleTodoPhone';
-import {getTodoOperation, postTodoOperation, deleteTodoOperation} from './../../redux/operations/todoOperations';
+import { Title, Div, ERROR } from './StyleTodoPhone';
+import { getTodoOperation, postTodoOperation, deleteTodoOperation } from './../../redux/operations/todoOperations';
 import Loader from 'react-loader-spinner';
 
 const TodoPhone = () => {
 	const [error, setError] = useState('');
 	const contacts = useSelector((state) => state.todoList);
-	const loader = useSelector((state)=> state.loader);
+	const loader = useSelector((state) => state.loader);
+	const errorReducer = useSelector((state) => state.errorReducer);
 	const dispatch = useDispatch();
-	
+
 	useEffect(() => {
 		if (!!error) {
 			setTimeout(() => {
@@ -25,7 +26,7 @@ const TodoPhone = () => {
 		}
 		dispatch(getTodoOperation())
 	}, [error, dispatch])
-	
+
 	const addTask = (name, number) => {
 		const contact = {
 			name: name,
@@ -50,7 +51,7 @@ const TodoPhone = () => {
 		dispatch(deleteItem(id))
 	}
 
-	
+
 
 	return (
 		<>
@@ -61,15 +62,16 @@ const TodoPhone = () => {
 				Phonebook
 			</Title>
 			<Form addTask={addTask} />
-			{loader ? <Loader type="Puff"
-                    color="#00BFFF"
-                    height={100}
-                    width={100}
-                    timeout={3000} /> :
-				<Section title={"Contacts:"}> 
-				{contacts.length > 1 && <FilterForm />}
-				<PhoneItem deleteTask={deleteTask} contacts={contacts} />
-			</Section>}
+			{<ERROR>{errorReducer}</ERROR>}
+			{loader && <Loader type="Puff"
+				color="#00BFFF"
+				height={100}
+				width={100}
+				timeout={3000} /> &&
+				<Section title={"Contacts:"}>
+					{contacts.length > 1 && <FilterForm />}
+					<PhoneItem deleteTask={deleteTask} contacts={contacts} />
+				</Section>}
 		</>
 	)
 }

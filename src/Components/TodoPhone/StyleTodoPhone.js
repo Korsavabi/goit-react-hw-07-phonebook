@@ -1,4 +1,11 @@
 import transition from "styled-transition-group"
+import styled from 'styled-components';
+
+export const ERROR = styled.h1`
+text-align: center;
+margin: 50px 0;
+font-size: 48px;
+`;
 
 export const Div = transition.div.attrs({
 	unmountOnExit: true,
