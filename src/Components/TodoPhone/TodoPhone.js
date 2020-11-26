@@ -6,7 +6,7 @@ import PhoneItem from "../PhoneItem/PhoneItem";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem } from '../../redux/action/todoList';
 import { v4 as uuidv4 } from 'uuid';
-import { Title, Div, ERROR } from './StyleTodoPhone';
+import { Title, Div, ERROR, DIV } from './StyleTodoPhone';
 import { getTodoOperation, postTodoOperation, deleteTodoOperation } from './../../redux/operations/todoOperations';
 import Loader from 'react-loader-spinner';
 
@@ -63,11 +63,12 @@ const TodoPhone = () => {
 			</Title>
 			<Form addTask={addTask} />
 			{<ERROR>{errorReducer}</ERROR>}
-			{ loader && <Loader type="Puff"
+			
+			{ loader && <DIV><Loader type="Puff"
 				color="#00BFFF"
 				height={100}
 				width={100}
-				timeout={3000} />}
+				timeout={3000}/></DIV>}
 			{!errorReducer && !loader && (
 				<Section title={"Contacts:"}>
 					{contacts.length > 1 && <FilterForm />}

@@ -6,7 +6,9 @@ text-align: center;
 margin: 50px 0;
 font-size: 48px;
 `;
-
+export const DIV = styled.div`
+text-align: center;
+`;
 export const Div = transition.div.attrs({
 	unmountOnExit: true,
 	mountOnEntry: true,
