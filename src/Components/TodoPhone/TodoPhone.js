@@ -8,10 +8,12 @@ import { deleteItem } from '../../redux/action/todoList';
 import { v4 as uuidv4 } from 'uuid';
 import { Title, Div } from './StyleTodoPhone';
 import {getTodoOperation, postTodoOperation, deleteTodoOperation} from './../../redux/operations/todoOperations';
+import Loader from 'react-loader-spinner';
 
 const TodoPhone = () => {
 	const [error, setError] = useState('');
 	const contacts = useSelector((state) => state.todoList);
+	const loader = useSelector((state)=> state.loader);
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
@@ -59,10 +61,15 @@ const TodoPhone = () => {
 				Phonebook
 			</Title>
 			<Form addTask={addTask} />
-			<Section title={"Contacts:"}>
+			{loader ? <Loader type="Puff"
+                    color="#00BFFF"
+                    height={100}
+                    width={100}
+                    timeout={3000} /> :
+				<Section title={"Contacts:"}> 
 				{contacts.length > 1 && <FilterForm />}
 				<PhoneItem deleteTask={deleteTask} contacts={contacts} />
-			</Section>
+			</Section>}
 		</>
 	)
 }
